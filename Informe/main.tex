@@ -1,0 +1,72 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}		% Configuro la codificación
+\input{config.tex}				% Archivo con los comandos globales como Título y autores
+\input{preamble.tex}
+%\input{aux_functions.tex}		% Se proveen un conjunto de funciones extras
+
+% Defino el path de los includegraphics
+\graphicspath{{./Figuras/}}		% Directorio que contiene los graficos
+
+% Defino el path para los input de .tex y de .eps
+\makeatletter
+\def\input@path{{./Figuras/}{./Secciones/}{./Cover_page/}}
+\makeatother
+
+% Defino el path del listings
+\ifListings
+%% Cambiar el nombre de la carpeta si se utilizan Listings
+	\lstinputpath{{../Matlab/}}
+\fi
+
+\definecolor{myred}{rgb}{0.5,0,0}
+\definecolor{mygreen}{rgb}{0,0.5,0}
+
+\renewcommand{\thesubsubsection}{\thesubsection.\alph{subsubsection}}
+
+\pagestyle{fancy}
+\renewcommand{\sectionmark}[1]{\markboth{}{\thesection\ \ #1}}
+\lhead{}
+\chead{}
+\rhead{\rightmark}
+\lfoot{Acústica (86.57)}
+\cfoot{}
+\rfoot{P\'agina \thepage\ de 13}
+
+\begin{document}
+		% Carátula (formal o simple,_formal o _simple respectivamente) con Resumen
+		% incluido e Índice (si es necesario configurar en config.tex) del informe
+		\input{portada.tex}
+%	\setcounter{page}{1}
+	
+	% Hago que las páginas se comiencen a contar a partir de aquí:
+% Pongo el índice en una página aparte:
+\tableofcontents
+%\listoffigures
+%\listoftables
+\newpage
+\setcounter{page}{1}
+%----------------------------- Consigna del TP --------------------------------
+%\marginsize{1cm}{1cm}{1cm}{1cm}
+
+%	\begin{center}{\Large{\textbf{Introducción}}}\end{center}
+
+\section{Introducción}
+	\input{0_introducción}
+
+\section{Medición de aislamiento acústico al ruido aéreo}
+	\input{1_aislamiento}
+
+\section{Medición de absorción sonora en cámara reverberante}
+	\input{2_absorción}
+
+\section{Conclusiones: análisis de los resultados obtenidos}
+	\input{3_conclusiones}
+
+
+%	\part{Conclusiones}\label{sec:conclusiones}
+%		\input{conclusiones.tex}
+%
+%	\appendix
+%		\section{Código}
+\end{document}
